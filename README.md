@@ -16,8 +16,13 @@ to the kafka StatefulSet declaration to enable automatic volume provisioning.
 Alternatively create [PV](http://kubernetes.io/docs/user-guide/persistent-volumes/#persistent-volumes)s and [PVC](http://kubernetes.io/docs/user-guide/persistent-volumes/#persistentvolumeclaims)s manually. For example in Minikube.
 
 ```
-./bootstrap/pv.sh
-kubectl create -f ./bootstrap/pvc.yml
+# Use if you want to have disks set up ahead of time
+# ./bootstrap/pv.sh
+# kubectl create -f ./bootstrap/pvc.yml
+
+# set up with storage storageclasses
+# If using Azure make sure to set up your cluster with DS2 machines that allow premium storage
+kubectl create -f shared-fast.json
 # check that claims are bound
 kubectl get pvc
 ```
